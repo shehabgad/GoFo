@@ -181,6 +181,44 @@ public class ProgramInterface {
                 }
             } while (user == null);
     }
+    public void displayPlaygroundOwnerBookings()
+    {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Booking> bookings = ((PlaygroundOwner) user.getConcreteRole()).getBookingRequests();
+        for(int i = 0; i < bookings.size(); i++) System.out.println(bookings.get(i));
+        System.out.println("Enter 0 to return to main menu or 1 to accept/deny a booking request: ");
+        String choiceStr = sc.nextLine();
+        int choice = Integer.parseInt(choiceStr);
+        if(choice == 0) return;
+        else if(choice == 1)
+        {
+            System.out.println("Enter the Booking Id you want to accept/deny: ");
+            String bookingId = sc.nextLine();
+            for(int i = 0; i < bookings.size(); i++)
+            {
+                if(bookings.get(i).getBookingID().equals(bookingId))
+                {
+                    System.out.println(bookings.get(i));
+                    System.out.println("Enter 0/1 if you want to deny/accept the request");
+                    choiceStr = sc.nextLine();
+                    choice = Integer.parseInt(choiceStr);
+                    if(choice == 0)
+                    {
+                        bookings.get(i).setBookingStatus(BookingStatus.Denied);
+                        System.out.println("Book has been Denied successfully");
+
+                    }
+                    else if(choice == 1)
+                    {
+                        bookings.get(i).setBookingStatus(BookingStatus.Accepted);
+                        System.out.println("Book has been accepted successfully");
+
+                    }
+                    break;
+                }
+            }
+        }
+    }
     public void displayUserMenu()
     {
         Scanner sc = new Scanner(System.in);
@@ -224,7 +262,7 @@ public class ProgramInterface {
             }
             else if(choice == 1)
             {
-
+                displayPlaygroundOwnerBookings();
             }
             else if(choice == 2)
             {

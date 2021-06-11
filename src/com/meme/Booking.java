@@ -23,8 +23,16 @@ public class Booking {
     public Booking(WorkDay wday, Playground playground) {
         bookingWorkDay = wday;
         this.playground = playground;
+        bookingStatus = BookingStatus.Pending;
     }
-
+    public void setBookingStatus(BookingStatus bookingStatus)
+    {
+        this.bookingStatus = bookingStatus;
+    }
+    public String getBookingID()
+    {
+        return bookingID;
+    }
     /**
      * getBookingStatus method returns the status of this booking
      * @return bookingStatus the status of this booking
