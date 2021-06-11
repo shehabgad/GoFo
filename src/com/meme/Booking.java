@@ -24,6 +24,7 @@ public class Booking {
         bookingWorkDay = wday;
         this.playground = playground;
         bookingStatus = BookingStatus.Pending;
+        this.playerTeam = new ArrayList<Player>();
     }
     public void setBookingStatus(BookingStatus bookingStatus)
     {
@@ -56,16 +57,20 @@ public class Booking {
         bookingInfo = bookingInfo.concat("\n");
 
         bookingInfo = bookingInfo.concat("Playground name: ");
-        bookingInfo = bookingID.concat(playground.getName() + "\n");
+        bookingInfo = bookingInfo.concat(playground.getName() + "\n");
         bookingInfo = bookingInfo.concat("Player ID: " + playerID + "\n");
-        bookingInfo = bookingID.concat("Team completed: " + teamCompleted + "\n");
-        bookingInfo = bookingID.concat("Booking status: " + bookingStatus + "\n");
-        bookingInfo = bookingID.concat("Booking ID: " + bookingID + "\n");
-        bookingInfo = bookingID.concat("looking for a team: " + lookingForATeam + "\n");
+        bookingInfo = bookingInfo.concat("Team completed: " + teamCompleted + "\n");
+        bookingInfo = bookingInfo.concat("Booking status: " + bookingStatus + "\n");
+        bookingInfo = bookingInfo.concat("Booking ID: " + bookingID + "\n");
+        bookingInfo = bookingInfo.concat("looking for a team: " + lookingForATeam + "\n");
 
 
 
         return bookingInfo;
+    }
+    public void setPlayerID(String ID)
+    {
+        playerID = ID;
     }
 
     /**
@@ -82,7 +87,7 @@ public class Booking {
      */
     public String getPlaygroundOwnerId()
     {
-        return playerID;
+        return playground.getPlaygroundOwnerID();
     }
     /**
      *

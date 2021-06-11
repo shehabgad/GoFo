@@ -14,10 +14,8 @@ public class ProgramInterface {
 
     public void displayPlaygroundRegisterationForm(){
         Scanner sc= new Scanner(System.in);
-
         System.out.println("Please enter playground name: ");
         String playgroundName = sc.nextLine();
-
         System.out.println("Please enter playground location: ");
         String location = sc.nextLine();
 
@@ -62,6 +60,7 @@ public class ProgramInterface {
         TimePeriod cancelationPeriod = new TimePeriod(days,hours,minutes);
 
         Playground playground = new Playground(playgroundName,location,playgroundType,playgroundSize,timeSlot,pricePerHour,cancelationPeriod);
+        playground.setPlaygroundOwnerID(user.getId());
         ((PlaygroundOwner) user.getConcreteRole()).addPlayground(playground);
         system.addPlayground(playground);
         System.out.println("Playground has been added successfully");
@@ -123,7 +122,7 @@ public class ProgramInterface {
     }
         public void displayBookingForm(Playground playground){
 
-        System.out.println("enter your booking date in \"yyyy:mm:dd\" format");
+        System.out.println("enter your booking date in \"yyyy-mm-dd\" format");
         Scanner sc = new Scanner(System.in);
         String date = sc.nextLine();
 
@@ -133,10 +132,12 @@ public class ProgramInterface {
         System.out.println("enter your booking end time  in \"hh:mm:ss\" format");
         String endTime = sc.nextLine();
 
-        WorkDay Wday = new WorkDay(date, startTime, endTime);
+        WorkDay Wday = new WorkDay(startTime, endTime,date);
 
         Booking booking =new Booking(Wday,playground);
+        booking.setPlayerID(user.getId());
         ((Player) user.getConcreteRole()).addBooking(booking);
+        playground.addBooking(booking);
         system.addBooking(booking);
 
         System.out.println("Playground is booked successfully");
@@ -222,52 +223,54 @@ public class ProgramInterface {
     public void displayUserMenu()
     {
         Scanner sc = new Scanner(System.in);
-        if(user.getRole().equals("Player"))
-        {
-            System.out.println("Hi player");
-            System.out.println("Enter 0 to logout");
-            System.out.println("Enter 1 to view/book Playgrounds");
-            System.out.println("Enter 2 to display my bookings");
-            String choiceStr = sc.nextLine();
-            int choice = Integer.parseInt(choiceStr);
-            if(choice == 0) {
-                user = null;
-                return;
-            }
-            if(choice == 1)
-            {
-                displayPlayground();
-            }
-            else if(choice == 2)
-            {
-                ArrayList<Booking> bookings = ((Player) user.getConcreteRole()).getBookings();
-                for(int  i= 0;i < bookings.size(); i++)
-                {
-                    System.out.println(bookings.get(i));
+        while (true) {
+            if (user.getRole().equals("Player")) {
+                System.out.println(user.getName());
+                System.out.println("Enter 0 to logout");
+                System.out.println("Enter 1 to view/book Playgrounds");
+                System.out.println("Enter 2 to display my bookings");
+                String choiceStr = sc.nextLine();
+                int choice = Integer.parseInt(choiceStr);
+                if (choice == 0) {
+                    user = null;
+                    return;
+                }
+                if (choice == 1) {
+                    displayPlayground();
+                } else if (choice == 2) {
+                    ArrayList<Booking> bookings = ((Player) user.getConcreteRole()).getBookings();
+                    for (int i = 0; i < bookings.size(); i++) {
+                        System.out.println(bookings.get(i));
+                    }
+                }
+            } else if (user.getRole().equals("PlaygroundOwner")) {
+                System.out.println(user.getName());
+                System.out.println("Enter 0 to logout");
+                System.out.println("Enter 1 to see and accept/deny booking requests");
+                System.out.println("Enter 2 to register a Playground");
+                System.out.println("Enter 3 to view your Playgrounds");
+                String choiceStr = sc.nextLine();
+                int choice = Integer.parseInt(choiceStr);
+                if (choice == 0) {
+                    user = null;
+                    return;
+                } else if (choice == 1) {
+                    displayPlaygroundOwnerBookings();
+                } else if (choice == 2) {
+                    displayPlaygroundRegisterationForm();
+                }
+                else if (choice == 3) {
+                    displayPlaygroundOwnerPlaygrounds();
                 }
             }
         }
-
-        else if(user.getRole().equals("PlaygroundOwner"))
+    }
+    public void displayPlaygroundOwnerPlaygrounds()
+    {
+        ArrayList<Playground> playgrounds = ((PlaygroundOwner) user.getConcreteRole()).getPlaygrounds();
+        for(int i = 0; i < playgrounds.size(); i++)
         {
-            System.out.println("Hi playgroudOwner");
-            System.out.println("Enter 0 to logout");
-            System.out.println("Enter 1 to view your Playgrounds (playgrounds info and when they are available and who booked them and when");
-            System.out.println("Enter 2 to register a Playground");
-            String choiceStr = sc.nextLine();
-            int choice = Integer.parseInt(choiceStr);
-            if(choice == 0) {
-                user = null;
-                return;
-            }
-            else if(choice == 1)
-            {
-                displayPlaygroundOwnerBookings();
-            }
-            else if(choice == 2)
-            {
-                displayPlaygroundRegisterationForm();
-            }
+            System.out.println(playgrounds.get(i));
         }
     }
     public void run()

@@ -20,6 +20,8 @@ public class PlaygroundOwner extends Role {
 
     public PlaygroundOwner(String roleName){
         super(roleName);
+        playgrounds = new ArrayList<Playground>();
+        bookings = new ArrayList<Booking>();
     }
 
     /**
@@ -35,7 +37,7 @@ public class PlaygroundOwner extends Role {
      * this function is to give the playground owner the ability to display his playground's in
      * @return playgrounds info from array list (Playground)
      */
-    public ArrayList<Playground> getPlaygroundInfo(){
+    public ArrayList<Playground> getPlaygrounds(){
         return playgrounds;
     }
 

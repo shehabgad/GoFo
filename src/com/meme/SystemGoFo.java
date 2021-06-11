@@ -17,6 +17,9 @@ public class SystemGoFo {
     {
         PlaygroundId = 1;
         BookingId = 1;
+        users = new ArrayList<User>();
+        playgrounds = new ArrayList<Playground>();
+        bookings = new ArrayList<Booking>();
     }
 
     public void addPlayground(Playground playground)
@@ -27,12 +30,13 @@ public class SystemGoFo {
         PlaygroundId++;
     }
     public void addUser(User user){
-        users.add(user);
+         users.add(user);
     }
     public void addBooking(Booking booking)
     {
         booking.setId(Long.toString(BookingId));
         Role playgroundOwner = getPlaygroundOwner(booking);
+        System.out.println(playgroundOwner);
         ((PlaygroundOwner) playgroundOwner).addBooking(booking);
         bookings.add(booking);
         BookingId++;
@@ -72,11 +76,13 @@ public class SystemGoFo {
 
     public boolean IdExists(String id)
     {
-        for(int i = 0; i < users.size(); i++)
-        {
-            if(users.get(i).getId().equals(id))
-                return true;
-        }
+
+            for (int i = 0; i < users.size(); i++) {
+                if (users.get(i).getId().equals(id))
+                    return true;
+
+
+            }
         return false;
     }
 

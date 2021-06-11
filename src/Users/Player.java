@@ -18,6 +18,8 @@ public class Player extends Role {
 
     public Player(String roleName){
         super(roleName);
+        bookings = new ArrayList<Booking>();
+        favoriteTeam = new ArrayList<Player>();
     }
 
     /**

@@ -20,7 +20,6 @@ public class Playground {
     private PlaygroundStatus playgroundStatus;
     private  ArrayList<Booking> bookings;
     private ArrayList<WorkDay> availbleWorkDays;
-    private PlaygroundOwner playgroundOwner;
     private TimePeriod cancelationPeriod;
 
     public Playground(String name, String location, String playgroundType, Size playgroundSize, TimeSlot timeAvailble,
@@ -33,11 +32,13 @@ public class Playground {
         this.pricePerHour = pricePerHour;
         this.cancelationPeriod = cancelationPeriod;
         this.playgroundStatus = PlaygroundStatus.Active;
-        for(int i = 0; i < 5; i++)
+        this.availbleWorkDays = new ArrayList<WorkDay>();
+        this.bookings = new ArrayList<Booking>();
+        for(int i = 1; i <= 5; i++)
         {
             String workDayDate = new String("");
-            workDayDate = workDayDate.concat("2021");
-            workDayDate = workDayDate.concat("07");
+            workDayDate = workDayDate.concat("2021-");
+            workDayDate = workDayDate.concat("07-");
             workDayDate = workDayDate.concat("0" + Integer.toString(i));
             WorkDay workDay = new WorkDay(timeAvailble.getTimeFrom(), timeAvailble.getTimeTo(),workDayDate);
             availbleWorkDays.add(workDay);
@@ -120,21 +121,26 @@ public class Playground {
         String playgroundStr = new String("");
         playgroundStr = playgroundStr.concat("Playground name: ");
         playgroundStr = playgroundStr.concat(name + "\n");
+        playgroundStr = playgroundStr.concat("Playground ID: ");
+        playgroundStr = playgroundStr.concat(playgroundID + "\n");
+        playgroundStr = playgroundStr.concat("Playground Owner ID: ");
+        playgroundStr = playgroundStr.concat(playgroundOwnerID + "\n");
         playgroundStr = playgroundStr.concat("Playground location: ");
         playgroundStr = playgroundStr.concat(location + "\n");
         playgroundStr = playgroundStr.concat("Playground type: ");
         playgroundStr = playgroundStr.concat(playgroundType + "\n");
         playgroundStr = playgroundStr.concat("Playground length: ");
         playgroundStr = playgroundStr.concat(playgroundSize.length + "\n");
-        playgroundStr = playgroundStr.concat("`Playground width: ");
+        playgroundStr = playgroundStr.concat("Playground width: ");
         playgroundStr = playgroundStr.concat(playgroundSize.width + "\n");
         playgroundStr = playgroundStr.concat("Price per hour: ");
         playgroundStr = playgroundStr.concat(pricePerHour+ "\n");
-        playgroundStr = playgroundStr.concat("Playground width: ");
-        playgroundStr = playgroundStr.concat(playgroundSize.length + "\n");
         playgroundStr = playgroundStr.concat("Playground cancellation period(days hours minutes): ");
         playgroundStr = playgroundStr.concat(cancelationPeriod.days + " " + cancelationPeriod.hours + " " + cancelationPeriod.minutes+"\n");
 
+        playgroundStr =  playgroundStr.concat("\nAvailable Time to book\n");
+        for(int i = 0; i < availbleWorkDays.size();i++)
+            playgroundStr =  playgroundStr.concat(availbleWorkDays.get(i).toString() + "\n");
         return playgroundStr;
     }
 
@@ -154,6 +160,11 @@ public class Playground {
     public String getName()
     {
         return name;
+    }
+
+    public void setPlaygroundOwnerID(String ID)
+    {
+        this.playgroundOwnerID = ID;
     }
 
 }
