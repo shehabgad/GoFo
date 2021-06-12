@@ -1,14 +1,24 @@
+/**
+ * @author Peter Essam Maguid Isaac
+ */
 package com.meme;
 
 /**
- * @author Peter Essam Maguid Isaac
- * Booking Status that can be used
- * {@link #Accepted
- * @link #Canceled
- * @link #Pending
- * @link #Denied}
+
+ * {@link #Accepted}
+ * {@link #Canceled}
+ * {@link #Pending}
+ * {@link #Denied}
  */
 
+/**
+ * Booking Status that can be used
+ *  {@link #Accepted}
+ *  {@link #Canceled}
+ *  {@link #Pending}
+ *  {@link #Denied}
+ *
+ */
 public enum BookingStatus {
     /**
      * booking is accepted

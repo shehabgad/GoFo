@@ -1,8 +1,11 @@
-package com.meme;
 
 /**
  * @author shehab eldin khaled mohamed
- * this class represents the a time period for a certain event it has 3 attributes: days, hours ,and minutes
+ */
+package com.meme;
+
+/**
+ *  * this class represents the a time period for a certain event it has 3 attributes: days, hours ,and minutes
  */
 public class TimePeriod {
     public int days;

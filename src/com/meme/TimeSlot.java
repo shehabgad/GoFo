@@ -60,7 +60,7 @@ public class TimeSlot {
 
     /**
      * this method is to print all time details(start time and end time of a time slot)
-     * @return
+     * @return a string that represents the data of the object
      */
     public String toString()
     {

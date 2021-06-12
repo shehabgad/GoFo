@@ -1,7 +1,11 @@
-package com.meme;
 
 /**
  * @author shehab eldin khaled mohamed
+ *
+ */
+package com.meme;
+
+/**
  * this class represents the size of a certain Playground it has only two attribuites the length and width of the playground
  */
 public class Size {

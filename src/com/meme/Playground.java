@@ -3,11 +3,13 @@ package com.meme;
 import Users.PlaygroundOwner;
 /**
  * @author shehab eldin khaled mohamed
- * this class represents the Playground in the GoFo system
  */
 import java.awt.print.Book;
 import java.util.ArrayList;
 
+/**
+ * this class represents the Playground in the GoFo system
+ */
 public class Playground {
     private String name;
     private String location;

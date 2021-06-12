@@ -1,13 +1,15 @@
-package com.meme;
-
 /**
  * @author shehab eldin khaled mohamed
- * this class represent the work day which contains a certain date and time slot for a certain event
- * it contains two attribuites the timeSlot and the date
  */
+package com.meme;
+
 
 import java.time.LocalDate;
 
+/**
+ * this class represent the work day which contains a certain date and time slot for a certain event
+ *  it contains two attribuites the timeSlot and the date
+ */
 public class WorkDay {
       private TimeSlot timeSlot;
       private LocalDate date;

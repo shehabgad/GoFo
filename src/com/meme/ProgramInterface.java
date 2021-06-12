@@ -1,17 +1,27 @@
+/**
+ * @author Shehab Eldin khaled mohamed, Peter Essam Maguid Isaac
+ */
 package com.meme;
 import Users.Player;
 import Users.PlaygroundOwner;
 import Users.Role;
 import Users.User;
-
-import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * This class is responsible of the program interface which is responsible of
+ * displaying program's important functions and forms
+ */
 public class ProgramInterface {
     private User user;
     SystemGoFo system = new SystemGoFo();
 
+    /**
+     * this function displays the playground registration form
+     * for the playground owner to register his playgrounds
+     * it takes inputs for playground's details and stores them in playgrounds menu/list
+     */
     public void displayPlaygroundRegisterationForm(){
         Scanner sc= new Scanner(System.in);
         System.out.println("Please enter playground name: ");
@@ -65,6 +75,12 @@ public class ProgramInterface {
         system.addPlayground(playground);
         System.out.println("Playground has been added successfully");
     }
+
+    /**
+     * this function displays the user registration form
+     * when a user(whether a playground owner or a player) wants to register in the system
+     * it takes inputs for user's details and stores them in users' menu/list
+     */
     public void userRegisterationForm(){
         Scanner sc = new Scanner(System.in);
         boolean Success = false;
@@ -86,6 +102,7 @@ public class ProgramInterface {
                 userRole = new Player("Player");
             }
             else {
+                System.out.printf("please enter 0 or 1 ");
                 continue;
             }
             System.out.println("Please enter your name: ");
@@ -120,7 +137,15 @@ public class ProgramInterface {
 
 
     }
-        public void displayBookingForm(Playground playground){
+
+    /**
+     * This function displays the booking form
+     * when a player user wants to book a specific playground
+     * it takes inputs for booking details like start and end time and stores them in booking list
+     * @param playground of type (Playground) in order to choose which playground the player wants to book
+     *
+     */
+    public void displayBookingForm(Playground playground){
 
         System.out.println("enter your booking date in \"yyyy-mm-dd\" format");
         Scanner sc = new Scanner(System.in);
@@ -143,6 +168,12 @@ public class ProgramInterface {
         System.out.println("Playground is booked successfully");
 
     }
+
+    /**
+     * this function displays the playgrounds list
+     * when a user wants to book a playground
+     * it takes inputs for the chosen playground's id and checks if such a playground exists
+     */
     public void displayPlayground(){
         Scanner sc = new Scanner(System.in);
         ArrayList<Playground> playgrounds = system.getPlaygrounds();
@@ -174,22 +205,36 @@ public class ProgramInterface {
 
         }
     }
+
+    /**
+     * this function displays the login form
+     * when a user(whether a playground owner or a player) wants to login in the system
+     * it takes inputs for user's details like his id and password and checks if they are right
+     */
     public void loginForm() {
 
-            user = null;
-            do {
-                System.out.println("Enter ID");
-                Scanner sc = new Scanner(System.in);
-                String ID = sc.nextLine();
-                System.out.println("Enter Password");
+        user = null;
+        do {
+            System.out.println("Enter ID");
+            Scanner sc = new Scanner(System.in);
+            String ID = sc.nextLine();
+            System.out.println("Enter Password");
 
-                String Pass = sc.nextLine();
-                user = system.verfiyUser(ID,Pass);
-                if(user == null) {
-                    System.out.println("WRONG ID OR PASSWORD !!");
-                }
-            } while (user == null);
+            String Pass = sc.nextLine();
+            user = system.verfiyUser(ID,Pass);
+            if(user == null) {
+                System.out.println("WRONG ID OR PASSWORD !!");
+            }
+        } while (user == null);
     }
+
+    /**
+     * This function displays the playground owner's bookings list,
+     * it also checks if there are bookings or not.
+     * if there are bookings ,
+     * this function gives the playground owner the ability to accept or to deny the booking he chooses.
+     *
+     */
     public void displayPlaygroundOwnerBookings()
     {
         Scanner sc = new Scanner(System.in);
@@ -233,6 +278,13 @@ public class ProgramInterface {
             }
         }
     }
+
+    /**
+     * This function displays user main menu for users
+     * it asks the user
+     * if he wants to logout of the system or to view/book his playgrounds or to display his bookings
+     * and then continues the process of the rest of the functions when he chooses what he wants to do
+     */
     public void displayUserMenu()
     {
         Scanner sc = new Scanner(System.in);
@@ -282,6 +334,14 @@ public class ProgramInterface {
             }
         }
     }
+
+    /**
+     * This function displays the playground owner's playgrounds list,
+     * it also checks if there are playgrounds or not.
+     * if there are playgrounds , it just displays them.
+     * else, it gives him error message that he hasn't registered playgrounds yet
+     *
+     */
     public void displayPlaygroundOwnerPlaygrounds()
     {
         ArrayList<Playground> playgrounds = ((PlaygroundOwner) user.getConcreteRole()).getPlaygrounds();
@@ -295,6 +355,11 @@ public class ProgramInterface {
             System.out.println(playgrounds.get(i));
         }
     }
+
+    /**
+     * this function is responsible of running the whole system
+     * where the whole system starts by implementing this function in the main function
+     */
     public void run()
     {
         Scanner sc = new Scanner(System.in);

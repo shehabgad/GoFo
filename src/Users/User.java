@@ -1,7 +1,9 @@
+/**
+ * @author shehab eldin khaled mohamed
+ */
 package Users;
 
 /**
- * @author shehab eldin khaled mohamed
  * this class represents the user in the goFo system
  */
 public class User {
@@ -109,7 +111,7 @@ public class User {
     }
 
     /**
-     *
+     * @return role it returns an object of type role to be then casted to either player or playgroundowner so we can get information from them
      */
      public Role getConcreteRole()
      {

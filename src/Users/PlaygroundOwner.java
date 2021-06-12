@@ -27,7 +27,7 @@ public class PlaygroundOwner extends Role {
     /**
      * this function is to give the playground owner the ability to add playgrounds to the system
      * playground is added to Playground array list
-     * @param playground
+     * @param playground the playground to be added in the list of the playgrounds the playground owner has
      */
     public void addPlayground(Playground playground){
     playgrounds.add(playground);

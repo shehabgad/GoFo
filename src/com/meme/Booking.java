@@ -1,4 +1,9 @@
+/**
+ * @author shehab eldin khaled mohamed
+ */
+
 package com.meme;
+
 import java.awt.print.Book;
 import java.security.PublicKey;
 import java.util.Scanner;
@@ -7,7 +12,6 @@ import Users.Player;
 import java.util.ArrayList;
 
 /**
- * @author shehab eldin khaled mohamed
  * this class reperesents the Booking in the GoFo System
  */
 public class Booking {
@@ -20,16 +24,31 @@ public class Booking {
     private String bookingID;
     private boolean lookingForATeam;
 
+    /**
+     *
+     * @param wday the booking time
+     * @param playground the playground that is booked
+     */
     public Booking(WorkDay wday, Playground playground) {
         bookingWorkDay = wday;
         this.playground = playground;
         bookingStatus = BookingStatus.Pending;
         this.playerTeam = new ArrayList<Player>();
     }
+
+    /**
+     * setBookingStatus sets the value of the booking status to a new value
+     * @param bookingStatus the new booking status that will be set to the object
+     */
     public void setBookingStatus(BookingStatus bookingStatus)
     {
         this.bookingStatus = bookingStatus;
     }
+
+    /**
+     *
+     * @return the booking ID
+     */
     public String getBookingID()
     {
         return bookingID;

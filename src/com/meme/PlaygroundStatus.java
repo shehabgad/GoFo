@@ -2,10 +2,13 @@ package com.meme;
 
 /**
  * @author shehab eldin khaled mohamed
- * Playground status that can be used
- * {@link #Suspended
- * @link #Active
- * @link #waiting}
+ */
+
+/**
+ *  Playground status that can be used
+ *  {@link #Suspended}
+ *  {@link #Active}
+ *  {@link #Waiting}
  */
 public enum PlaygroundStatus {
     /**

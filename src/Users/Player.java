@@ -1,14 +1,21 @@
+/**
+ * Users package contains the classes related to the users of the system
+ */
+
+/**
+ * @author Peter Essam Maguid
+ */
 package Users;
 import java.awt.print.Book;
 import java.util.ArrayList;
 import com.meme.Booking;
 import com.meme.BookingStatus;
 
+
 /**
- * @author Peter Essam Maguid
- * this class is for the player user
- * composition between classes (player) and (user) where a player must be a user
- * player class has 3 attributes: bookings(player's list of bookings), favoriteTeam(player's team list of members)
+ *  this class is for the player user
+ *  composition between classes (player) and (user) where a player must be a user
+ *  player class has 3 attributes: bookings(player's list of bookings), favoriteTeam(player's team list of members)
  */
 public class Player extends Role {
  private ArrayList<Booking> bookings;
@@ -24,6 +31,7 @@ public class Player extends Role {
 
     /**
      * this function is to get all Bookings the player has made
+     * @return bookings an array list of all the bookings the player has made
      */
     public ArrayList<Booking> getBookings() {
         return bookings;
