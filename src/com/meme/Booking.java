@@ -49,13 +49,6 @@ public class Booking {
     public String toString()
     {
         String bookingInfo = new String("");
-        bookingInfo = bookingInfo.concat("Booking Status: ");
-        if(bookingStatus == BookingStatus.Accepted) bookingInfo = bookingInfo.concat("Accepted");
-        else if(bookingStatus == BookingStatus.Pending) bookingInfo = bookingInfo.concat("Pending");
-        else if(bookingStatus == BookingStatus.Denied) bookingInfo = bookingInfo.concat("Denied");
-        else if(bookingStatus == BookingStatus.Canceled) bookingInfo = bookingInfo.concat("Cancelled");
-        bookingInfo = bookingInfo.concat("\n");
-
         bookingInfo = bookingInfo.concat("Playground name: ");
         bookingInfo = bookingInfo.concat(playground.getName() + "\n");
         bookingInfo = bookingInfo.concat("Player ID: " + playerID + "\n");
@@ -63,6 +56,7 @@ public class Booking {
         bookingInfo = bookingInfo.concat("Booking status: " + bookingStatus + "\n");
         bookingInfo = bookingInfo.concat("Booking ID: " + bookingID + "\n");
         bookingInfo = bookingInfo.concat("looking for a team: " + lookingForATeam + "\n");
+        bookingInfo = bookingInfo.concat("Booking time: " + bookingWorkDay.toString());
 
 
 

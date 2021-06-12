@@ -146,6 +146,11 @@ public class ProgramInterface {
     public void displayPlayground(){
         Scanner sc = new Scanner(System.in);
         ArrayList<Playground> playgrounds = system.getPlaygrounds();
+        if(playgrounds.size() == 0)
+        {
+            System.out.println("No playgrounds exists in the system yet!");
+            return;
+        }
         for(int i = 0; i< playgrounds.size(); i++){
             System.out.println((playgrounds.get(i)));
         }
@@ -162,8 +167,11 @@ public class ProgramInterface {
                     displayBookingForm(playgrounds.get(i));
                     break;
                 }
+                if(i == playgrounds.size() - 1){
+                    System.out.println("No such playground exists !!");
+                }
             }
-            System.out.println("No such playground exists !!");
+
         }
     }
     public void loginForm() {
@@ -186,6 +194,11 @@ public class ProgramInterface {
     {
         Scanner sc = new Scanner(System.in);
         ArrayList<Booking> bookings = ((PlaygroundOwner) user.getConcreteRole()).getBookingRequests();
+        if(bookings.size() == 0)
+        {
+            System.out.println("You don't have any bookings yet");
+            return;
+        }
         for(int i = 0; i < bookings.size(); i++) System.out.println(bookings.get(i));
         System.out.println("Enter 0 to return to main menu or 1 to accept/deny a booking request: ");
         String choiceStr = sc.nextLine();
@@ -225,7 +238,7 @@ public class ProgramInterface {
         Scanner sc = new Scanner(System.in);
         while (true) {
             if (user.getRole().equals("Player")) {
-                System.out.println(user.getName());
+                System.out.println("Hello " + user.getName());
                 System.out.println("Enter 0 to logout");
                 System.out.println("Enter 1 to view/book Playgrounds");
                 System.out.println("Enter 2 to display my bookings");
@@ -239,12 +252,16 @@ public class ProgramInterface {
                     displayPlayground();
                 } else if (choice == 2) {
                     ArrayList<Booking> bookings = ((Player) user.getConcreteRole()).getBookings();
+                    if(bookings.size() == 0)
+                    {
+                        System.out.println("you didn't make any bookings yet");
+                    }
                     for (int i = 0; i < bookings.size(); i++) {
                         System.out.println(bookings.get(i));
                     }
                 }
             } else if (user.getRole().equals("PlaygroundOwner")) {
-                System.out.println(user.getName());
+                System.out.println("hello " + user.getName());
                 System.out.println("Enter 0 to logout");
                 System.out.println("Enter 1 to see and accept/deny booking requests");
                 System.out.println("Enter 2 to register a Playground");
@@ -268,6 +285,11 @@ public class ProgramInterface {
     public void displayPlaygroundOwnerPlaygrounds()
     {
         ArrayList<Playground> playgrounds = ((PlaygroundOwner) user.getConcreteRole()).getPlaygrounds();
+        if(playgrounds.size() == 0)
+        {
+            System.out.println("You don't have in playgrounds registered in the system");
+            return;
+        }
         for(int i = 0; i < playgrounds.size(); i++)
         {
             System.out.println(playgrounds.get(i));

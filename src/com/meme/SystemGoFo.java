@@ -36,7 +36,6 @@ public class SystemGoFo {
     {
         booking.setId(Long.toString(BookingId));
         Role playgroundOwner = getPlaygroundOwner(booking);
-        System.out.println(playgroundOwner);
         ((PlaygroundOwner) playgroundOwner).addBooking(booking);
         bookings.add(booking);
         BookingId++;
